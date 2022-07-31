@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 class Counter extends Component {
   state = {
-    count: 0,
+    value: this.props.value,
   };
 
   renderTag() {
@@ -18,20 +18,22 @@ class Counter extends Component {
 
   buttonClass() {
     let base = "m-3 btn ";
-    if (this.state.count === 0) return (base += "btn-warning");
-    if (this.state.count % 2 === 1) return (base += "btn-success");
+    if (this.state.value === 0) return (base += "btn-warning");
+    if (this.state.value % 2 === 1) return (base += "btn-success");
     return (base += "btn-primary");
   }
 
   increment = () => {
-    this.setState({ count: this.state.count + 1 });
-    console.log(this.state.count);
+    this.setState({ value: this.state.value + 1 });
+    console.log(this.state.value);
   };
 
   render() {
+    console.log("props", this.props);
     return (
       <div>
-        <p>{this.state.count}</p>
+        {this.props.children}
+        <p>{this.state.value}</p>
         <button onClick={this.increment} className={this.buttonClass()}>
           Increment
         </button>
